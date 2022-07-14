@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="abcd" model="hospital.patient">
+            <field name="name">poli</field>
+            <field name="age">55</field>
+            <field name="gender">female</field>
+        </record>
+    </data>
+</odoo>

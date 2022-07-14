@@ -1,0 +1,25 @@
+{
+    'name': 'Hospital Management',
+    'version': '15.0',
+    'summary': "Hospital Management Solution",
+    'sequence': "50",
+    'description': """One stop solution to Hospital""",
+    'category': "productivity",
+    'website': "www.reliution.com",
+    'licence': "LGPL-3",
+    'depends': ['sale',
+                'mail'],
+    'data': [
+        'security\ir.model.access.csv',
+        'data/data.xml',
+        'data/pdata.xml',
+        'views/patient.xml',
+        'views/appointment_view.xml',
+        'views/medicine_details.xml',
+        'views/sale.xml',
+        'views/kids_view.xml',
+        'views/patient_gender_view.xml'],
+    'installable': True,
+    'application': True,
+    'auto_install': False
+}

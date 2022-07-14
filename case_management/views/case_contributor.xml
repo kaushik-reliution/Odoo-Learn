@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_case_contributor_search" model="ir.ui.view">
+        <field name="name">case.contributor.view</field>
+        <field name="model">case.contributor</field>
+        <field name="arch" type="xml">
+            <search string="contributors">
+                <field name="contributor_id"/>
+                <field name="case_id"/>
+                <field name="contribution_amount"/>
+                <field name="contribution_by"/>
+                <field name="contribution_ref"/>
+                <field name="contribution_received"/>
+            </search>
+        </field>
+    </record>
+    <record id="view_case_contributor_tree" model="ir.ui.view">
+        <field name="name">case.contributor.tree</field>
+        <field name="model">case.contributor</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="contributor_id"/>
+                <field name="case_id"/>
+                <field name="contribution_amount"/>
+                <field name="contribution_by"/>
+                <field name="contribution_ref"/>
+                <field name="contribution_received"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_case_contributor_form" model="ir.ui.view">
+        <field name="name">case.contributor.form</field>
+        <field name="model">case.contributor</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="contributor_id"/>
+                            <field name="case_id"/>
+                            <field name="contribution_received"/>
+                        </group>
+                        <group>
+                            <field name="contribution_by"/>
+                            <field name="contribution_ref"/>
+                            <field name="contribution_amount"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="contribution_action" model="ir.actions.act_window">
+        <field name="name">Contributors</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">case.contributor</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{'search_default_male':1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Fill contributors details......
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_contributors_root"
+              name="Contributor Form"
+              parent="menu_case_root"
+              action="contribution_action"
+              sequence="15"/>
+</odoo>

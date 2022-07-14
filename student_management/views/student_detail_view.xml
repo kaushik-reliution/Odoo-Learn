@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_student_record_tree" model="ir.ui.view">
+        <field name="name">student.record.tree</field>
+        <field name="model">student.record</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="std"/>
+                <field name="gender"/>
+                <field name="age"/>
+                <field name="city"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_student_record_form" model="ir.ui.view">
+        <field name="name">student.record.form</field>
+        <field name="model">student.record</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_process" string="Process" class="btn-primary" type="object"/>
+                    <button name="action_done" string="Done" class="btn-primary" type="object"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,process,done,"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="seq" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="std"/>
+                            <field name="b_date" groups="base.view_groups_form"/>
+
+                        </group>
+                        <group>
+                            <field name="gender"/>
+                            <field name="age"/>
+                            <field name="city"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="student_search" model="ir.ui.view">
+        <field name="name">student.detail.search</field>
+        <field name="model">student.record</field>
+        <field name="arch" type="xml">
+            <search string="Students">
+                <field name="name"/>
+                <field name="std"/>
+<!--                <group expand="1" string="Group By">-->
+<!--                    <filter string="Gender" name="gender" context="{'group_by': 'gender'}"/>-->
+<!--                </group>-->
+            </search>
+        </field>
+    </record>
+
+    <record id="student_action" model="ir.actions.act_window">
+        <field name="name">Student Details</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">student.record</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create record of Students....
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_student_root"
+              name="SRM"
+              sequence="5"/>
+
+    <menuitem id="menu_student_detail"
+              name="Student Details"
+              parent="menu_student_root"
+              sequence="20"/>
+
+    <menuitem id="menu_student"
+              name="Student Details"
+              parent="menu_student_detail"
+              action="student_action"
+              sequence="10"/>
+</odoo>

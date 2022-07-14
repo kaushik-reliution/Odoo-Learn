@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_student_record,access.student.record,model_student_record,,1,1,1,1
+access_student_admission,access.student.admission,model_student_admission,,1,1,1,1
+access_student_fees,access.student.fees,model_student_fees,,1,1,1,1
+access_admission_wizard,access.admission.wizard,model_admission_wizard,,1,1,1,1

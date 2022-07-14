@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_fees_record_tree" model="ir.ui.view">
+        <field name="name">student.fees.tree</field>
+        <field name="model">student.fees</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="student_id"/>
+                <field name="tuition_fees"/>
+                <field name="adm_fees"/>
+                <field name="lib_fees"/>
+            </tree>
+        </field>
+    </record>
+    <record id="fees_view_form" model="ir.ui.view">
+        <field name="name">student.fees.view</field>
+        <field name="model">student.fees</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="student_id"/>
+                            <field name="tuition_fees"/>
+                        </group>
+                        <group>
+                            <field name="adm_fees"/>
+                            <field name="lib_fees"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="ir_student_fees" model="ir.actions.act_window">
+        <field name="name">Fee Details</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">student.fees</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create record of Students....
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_fees"
+              name="Fees Details"
+              parent="menu_student_detail"
+              action="ir_student_fees"
+              sequence="10"/>
+
+
+</odoo>

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="invoice_report_wizard" model="ir.ui.view">
+        <field name="name">invoice.report.wizard</field>
+        <field name="model">invoice.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Print report Details">
+<!--                <group>-->
+<!--                    <field name="invoice_line_ids" widget="many2many">-->
+<!--                        <tree>-->
+<!--                            <field name="payment_reference"/>-->
+<!--                            <field name="invoice_date"/>-->
+<!--                            <field name="amount_total"/>-->
+<!--                        </tree>-->
+<!--                    </field>-->
+<!--                </group>-->
+                <group>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                </group>
+                <footer>
+                    <button name="send_invoice_report" string="Send Invoice Summary" type="object" class="btn-primary"/>
+                    <button name="inv_print_report" string="Invoice Report" type="object" class="btn-link"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_invoice_report" model="ir.actions.act_window">
+        <field name="name">Invoice Print</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">invoice.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="invoice_report_wizard"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

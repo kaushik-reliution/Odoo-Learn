@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="invoice_summary_report">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <table class="table table-sm o_main_table"
+                               style="font:cambria;color:red;background-color:azure;border:2pt solid black">
+                            <thead style="display: table-row-group">
+                                <t t-foreach="docs" t-as="o">
+                                    <t t-set="data" t-value="o.report_data()"/>
+                                    <tr>
+                                        <th style="color:blue;" class="text-left">Invoice Date</th>
+                                        <th style="color:blue;" class="text-right">Invoice Number</th>
+                                        <th style="color:blue;" class="text-right">Invoice Amount</th>
+
+                                    </tr>
+
+                                    <tr>
+                                        <t t-foreach="data['invoices']" t-as="datas">
+                                        <td>
+                                            <t t-esc="datas['invoices']['invoice_date']"/>
+                                            <!--                                            <t t-set="invoice_date" t-value="datas['invoice']['invoice_date']"/>-->
+                                        </td>
+                                        </t>
+                                    </tr>
+                                </t>
+                            </thead>
+
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+
+    </template>
+</odoo>
+

@@ -1,0 +1,20 @@
+{
+    'name': 'Student Management',
+    'version': '15.0',
+    'summary': "Student Record Management",
+    'sequence': "20",
+    'description': """Sales beyond imagination """,
+    'category': "productivity",
+    'website': "www.reliution.com",
+    'licence': "LGPL-3",
+    'depends': [],
+    'data': ['data/sequence.xml',
+             'security/ir.model.access.csv',
+             'wizard/student_admission_wizard.xml',
+             'views/student_detail_view.xml',
+             'views/admission_view.xml',
+             'views/fees_view.xml',
+             ],
+    'application': True,
+    'auto_install': True
+}

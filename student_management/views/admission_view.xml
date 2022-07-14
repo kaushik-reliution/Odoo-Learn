@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_student_admission_tree" model="ir.ui.view">
+        <field name="name">student.admission.tree</field>
+        <field name="model">student.admission</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="student_id"/>
+                <field name="std"/>
+                <field name="date_adm"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_student_admission_form" model="ir.ui.view">
+        <field name="name">student.admission.form</field>
+        <field name="model">student.admission</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="%(student_management.student_admission_wizard_action)d" string="Submit" class="btn-primary" type="action"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="a_seq" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="student_id"/>
+                            <field name="std"/>
+                            <field name="mobile"/>
+                        </group>
+                        <group>
+                            <field name="gender"/>
+                            <field name="date_adm"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="student_admission_search" model="ir.ui.view">
+        <field name="name">student.admission.search</field>
+        <field name="model">student.admission</field>
+        <field name="arch" type="xml">
+            <search string="Students">
+                <field name="student_id"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="student_admission_action" model="ir.actions.act_window">
+        <field name="name">Student Admission Details</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">student.admission</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Fill Admission form
+            </p>
+        </field>
+    </record>
+    <menuitem id="menu_student_root"
+              name="SRM"
+              sequence="5"/>
+
+    <menuitem id="menu_admission_detail"
+              name="Admission Details"
+              parent="menu_student_root"
+              sequence="20"/>
+
+    <menuitem id="menu_student_admission"
+              name="Admission Details"
+              parent="menu_admission_detail"
+              action="student_admission_action"
+              sequence="10"/>
+</odoo>

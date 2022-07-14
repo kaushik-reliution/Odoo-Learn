@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="sale_order_report_wiz" model="ir.ui.view">
+        <field name="name">sale.order.report.wiz</field>
+        <field name="model">sale.order.report</field>
+        <field name="arch" type="xml">
+            <form string="Print report Details">
+                <group>
+                    <group class="oe_title">
+                        <field name="partner_id"/>
+                        <field name="order_line_ids" invisible="1"/>
+                    </group>
+                    <group class="oe_title">
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="so_print_report" string="Print Report" type="object" class="btn-primary"/>
+                    <button name="send_report" string="Send Mail" type="object" class="btn-link"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="print_report_action" model="ir.actions.act_window">
+        <field name="name">Print</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order.report</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="sale_order_report_wiz"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

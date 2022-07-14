@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="vat_report">
+            <t t-call="web.html_container">
+                <t t-set="data_report_margin_top" t-value="5"/>
+                <style>
+                    td {
+                    padding:3px;
+                    border:1px solid black;
+                    font-size:14px;
+                    }
+                    th {
+                    font-size:16px;
+                    text-align:left
+                    }
+                    table{
+                    border-collapse:collapse;
+                    }
+                    .right {
+                    text-align:right;
+                    }
+                </style>
+                <t t-foreach="docs" t-as="o">
+                    <t t-set="data" t-value="o.calculate_vat()"/>
+                    <div class="page">
+                        <center>
+                            <strong>
+                                <span style="font-size:26px;" t-field="res_company.name"/>
+                                <br/>
+                                <span style="font-size:23px;">VAT Report</span>
+                                <br/>
+                                <div style="font-size:20px;">
+                                    <span>Date From :</span>
+                                    <span style="font-size:22px;" t-esc="data['date_from']"
+                                          t-options="{&quot;widget&quot;: &quot;date&quot;}"/>
+                                    <span>To :</span>
+                                    <span style="font-size:22px;" t-esc="data['date_to']"
+                                          t-options="{&quot;widget&quot;: &quot;date&quot;}"/>
+                                </div>
+                            </strong>
+                        </center>
+                        <table style="width:75%;margin-bottom:20px;">
+                            <tr>
+                                <th>
+                                    <strong>Main</strong>
+                                </th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <td>Form Type</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Document Locator</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Tax Form Filing Type</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Submission Date</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <strong>Taxable Person details</strong>
+                                </th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <td>TRN</td>
+                                <td>
+                                    <span t-field="res_company.vat"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Taxable Person Name (English)</td>
+                                <td>
+                                    <span t-field="res_company.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Taxable Person Name (Arabic)</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Taxable Person Address</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Tax Agency Name</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>TAN</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Tax Agent Name</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>TAAN</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <strong>VAT Return Period</strong>
+                                </th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <td>VAT Return Period</td>
+                                <td>
+                                    <span t-esc="data['date_from']" t-options="{&quot;widget&quot;: &quot;date&quot;}"/>
+                                    -
+                                    <span t-esc="data['date_to']" t-options="{&quot;widget&quot;: &quot;date&quot;}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Tax Year</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>VAT Return Period Reference Number</td>
+                                <td></td>
+                            </tr>
+                        </table>
+
+                        <t t-set="inv_tax_total" t-value="data['invoice']['inv_tax_total']"/>
+                        <t t-set="inv_amount_total" t-value="data['invoice']['inv_amount_total']"/>
+                        <t t-set="inv_untaxed_amount_total" t-value="data['invoice']['inv_untaxed_amount_total']"/>
+                        <t t-set="bill_tax_total" t-value="data['bill']['bill_tax_total']"/>
+                        <t t-set="bill_amount_total" t-value="data['bill']['bill_amount_total']"/>
+                        <t t-set="exp_tax_total" t-value="data['exp']['exp_tax_total']"/>
+                        <t t-set="exp_amount_total" t-value="data['exp']['exp_amount_total']"/>
+
+                        <table style="width:100%;">
+                                <tr>
+                                    <th>
+                                        <strong>VAT on Sales and all other Outputs</strong>
+                                    </th>
+                                    <th>
+                                        <strong>Amount(AED)</strong>
+                                    </th>
+                                    <th>
+                                        <strong>VAT Amount(AED)</strong>
+                                    </th>
+                                    <th>
+                                        <strong>Adjustment(AED)</strong>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>Standard rated supplies in Abu Dhabi</td>
+                                    <td class="right">0</td>
+                                    <td class="right">0</td>
+                                    <td class="right">0</td>
+                                </tr>
+                                <tr>
+                                    <td>Standard rated supplies in Dubai</td>
+                                    <td class="right">
+                                        <span t-esc="'{:0,.2f}'.format(float(inv_amount_total))"/>
+                                    </td>
+                                    <td class="right">
+                                        <span t-esc="'{:0,.2f}'.format(float(inv_tax_total))"/>
+                                    </td>
+                                    <td class="right">0</td>
+                                </tr>
+                                <tr>
+                                    <td>Standard rated supplies in Sharjah</td>
+                                    <td class="right">0</td>
+                                    <td class="right">0</td>
+                                    <td class="right">0</td>
+                                </tr>
+                                <tr>
+                                    <td>Standard rated supplies in Ajman</td>
+                                    <td class="right">0</td>
+                                    <td class="right">0</td>
+                                    <td class="right">0</td>
+                                </tr>
+                                <tr>
+                                    <td>Standard rated supplies in Umm Al Quwain</td>
+                                    <td class="right">0</td>
+                                    <td class="right">0</td>
+                                    <td class="right">0</td>
+                                </tr>
+                                <tr>
+                                    <td>Standard rated supplies in Ras Al Khaimah</td>
+                                    <td class="right">0</td>
+                                    <td class="right">0</td>
+                                    <td class="right">0</td>
+                                </tr>
+                                <tr>
+                                    <td>Standard rated supplies in Fujairah</td>
+                                    <td class="right">0</td>
+                                    <td class="right">0</td>
+                                    <td class="right">0</td>
+                                </tr>
+                                <tr>
+                                    <td>Tax Refunds provided to Tourists under the Tax Refunds for Tourists Scheme</td>
+                                    <td class="right">0</td>
+                                    <td class="right">0</td>
+                                    <td class="right">0</td>
+                                </tr>
+                                <tr>
+                                    <td>Supplies subject to the reverse-charge provisions</td>
+                                    <td class="right">0</td>
+                                    <td class="right">0</td>
+                                    <td class="right">0</td>
+                                </tr>
+                                <tr>
+                                    <td>Zero rated supplies</td>
+                                    <td class="right">
+                                        <span t-esc="'{:0,.2f}'.format(float(inv_untaxed_amount_total))"/>
+                                    </td>
+                                    <td class="right">0</td>
+                                    <td class="right">0</td>
+                                </tr>
+                                <tr>
+                                    <td>Exempt supplies</td>
+                                    <td class="right">0</td>
+                                    <td class="right">0</td>
+                                    <td class="right">0</td>
+                                </tr>
+                                <tr>
+                                    <td>Goods imported into the UAE</td>
+                                    <td class="right">0</td>
+                                    <td class="right">0</td>
+                                    <td class="right">0</td>
+                                </tr>
+                                <tr>
+                                    <td>Adjustments to goods imported into the UAE</td>
+                                    <td class="right">0</td>
+                                    <td class="right">0</td>
+                                    <td class="right">0</td>
+                                </tr>
+                                <tr>
+                                    <strong>
+                                        <td>
+                                            Totals
+                                        </td>
+                                        <td class="right">
+                                            <span t-esc="'{:0,.2f}'.format(float(inv_amount_total + inv_untaxed_amount_total))"/>
+                                        </td>
+                                        <td class="right">
+                                            <span t-esc="'{:0,.2f}'.format(float(inv_tax_total))"/>
+                                        </td>
+                                        <td class="right">0</td>
+                                    </strong>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <strong>VAT on Expenses and All Other Inputs</strong>
+                                    </th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <td>Standard rated expenses</td>
+                                    <td class="right">
+                                        <span t-esc="'{:0,.2f}'.format(float(bill_amount_total + exp_amount_total))"/>
+                                    </td>
+                                    <td class="right">
+                                        <span t-esc="'{:0,.2f}'.format(float(bill_tax_total + exp_tax_total))"/>
+                                    </td>
+                                    <td class="right">0</td>
+                                </tr>
+                                <tr>
+                                    <td>Supplies subject to the reverse-charge provisions</td>
+                                    <td class="right">0</td>
+                                    <td class="right">0</td>
+                                    <td class="right">0</td>
+                                </tr>
+                                <tr>
+                                    <strong>
+                                        <td>Totals</td>
+                                        <td class="right">
+                                            <span t-esc="'{:0,.2f}'.format(float(bill_amount_total + exp_amount_total))"/>
+                                        </td>
+                                        <td class="right">
+                                            <span t-esc="'{:0,.2f}'.format(float(bill_tax_total + exp_tax_total))"/>
+                                        </td>
+                                        <td class="right">0</td>
+                                    </strong>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <strong>Net VAT Due</strong>
+                                    </th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <td>Total value of due tax for the period</td>
+                                    <td class="right">
+                                        <span t-esc="'{:0,.2f}'.format(float(inv_tax_total))"/>
+                                    </td>
+                                    <td class="right"></td>
+                                    <td class="right"></td>
+                                </tr>
+                                <tr>
+                                    <td>Total value of recoverable tax for the period</td>
+                                    <td class="right">
+                                        <span t-esc="'{:0,.2f}'.format(float(bill_tax_total + exp_tax_total))"/>
+                                    </td>
+                                    <td class="right"></td>
+                                    <td class="right"></td>
+                                </tr>
+                                <tr>
+                                    <td>Payable tax for the period</td>
+                                    <td class="right">
+                                        <span t-esc="'{:0,.2f}'.format(float(inv_tax_total - (bill_tax_total + exp_tax_total)))"/>
+                                    </td>
+                                    <td class="right"></td>
+                                    <td class="right"></td>
+                                </tr>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <record id="action_vat_report" model="ir.actions.report">
+            <field name="name">Vat Report</field>
+            <field name="model">vat.report</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">vat_report.vat_report</field>
+            <field name="report_file">vat_report.vat_report</field>
+        </record>
+
+    </data>
+</odoo>

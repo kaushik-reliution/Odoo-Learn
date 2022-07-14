@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_case_case,access.case.case,model_case_case,,1,1,1,1
+access_case_contributor,access.case.contributor,model_case_contributor,,1,1,1,1
+access_entry_form,access.entry.form,model_entry_form,,1,1,1,1

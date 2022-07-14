@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="student_admission_view_wizard" model="ir.ui.view">
+        <field name="name">student.admission.detail.wizard</field>
+        <field name="model">admission.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Admission Details">
+                <group class="oe_title">
+<!--                    <field name="student_id" options="{'no_create_edit': True}"/>-->
+                    <field name="f_name"/>
+                    <field name="m_name"/>
+                    <field name="address"/>
+                    <field name="std" invisible="1"/>
+                    <field name="stream_selection" attrs="{'invisible' :[('std', '&lt;',10)]}"/>
+                    <field name="update"/>
+                    <field name="mobile"/>
+                </group>
+                <footer>
+                    <button name="action_admission_save" string="Save" type="object" class="btn-primary"
+                            data-hotkey="q"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="student_admission_wizard_action" model="ir.actions.act_window">
+        <field name="name">Submit</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">admission.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="student_admission_view_wizard"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

@@ -1,0 +1,20 @@
+{
+    'name': 'Case Management',
+    'version': '15.0',
+    'summary': "NGO Case Management",
+    'sequence': "50",
+    'description': """Solution to manage NGO's contributors""",
+    'category': "productivity",
+    'website': "www.navnirmanabhiyan.com",
+    'licence': "LGPL-3",
+    'depends': ['contacts'],
+    'data': ['security\ir.model.access.csv',
+             'data/sequence.xml',
+             'views/case_view.xml',
+             'views/case_contributor.xml',
+             'views/entry_form.xml',
+             ],
+    'installable': True,
+    'application': True,
+    'auto_install': False
+}

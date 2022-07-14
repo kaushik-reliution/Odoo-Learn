@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="sale_report_inherit">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <table class="table table-sm o_main_table" style="font:cambria;color:red;background-color:azure;border:2pt solid black">
+                        <thead style="display: table-row-group">
+                            <tr>
+                                <th style="color:blue;" name="th_description" class="text-left">Description</th>
+                                <th style="color:blue;" name="th_quantity" class="text-right">Quantity</th>
+                                <th style="color:blue;" name="th_priceunit" class="text-right">Unit Price</th>
+                                <th style="color:blue;" name="th_taxes" class="text-right">Taxes</th>
+                                <th name="th_subtotal" class="text-right">
+                                    <span style="color:blue;" groups="account.group_show_line_subtotals_tax_excluded">Amount</span>
+                                    <span style="color:blue;" groups="account.group_show_line_subtotals_tax_included">Total Price
+                                    </span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="sale_tbody">
+                            <t t-set="current_subtotal" t-value="0"/>
+                            <t t-foreach="docs.order_line" t-as="line">
+                                <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal"
+                                   groups="account.group_show_line_subtotals_tax_excluded"/>
+                                <t t-set="current_subtotal" t-value="current_subtotal + line.price_total"
+                                   groups="account.group_show_line_subtotals_tax_included"/>
+                                <tr>
+                                    <td name="td_name">
+                                        <span t-field="line.name"/>
+                                    </td>
+                                    <td name="td_quantity" class="text-right">
+                                        <span t-field="line.product_uom_qty"/>
+                                        <span t-field="line.product_uom"/>
+                                    </td>
+                                    <td name="td_priceunit" class="text-right">
+                                        <span t-field="line.price_unit"/>
+                                    </td>
+                                    <td name="td_taxes" class="text-right">
+                                        <span t-esc="', '.join(map(lambda x: (x.description or x.name), line.tax_id))"/>
+                                    </td>
+                                    <td style="background-color:azure" name="td_subtotal" class="text-right o_price_total">
+                                        <span t-field="line.price_subtotal"
+                                              groups="account.group_show_line_subtotals_tax_excluded"/>
+                                        <span t-field="line.price_total"
+                                              groups="account.group_show_line_subtotals_tax_included"/>
+                                    </td>
+                                    <t t-set="current_section" t-value="line"/>
+                                    <t t-set="current_subtotal" t-value="0"/>
+                                </tr>
+                                <!--                                <t t-if="current_section and (line_last or doc.order_line[line_index+1].display_type == 'line_section')">-->
+                                <!--                                    <tr class="is-subtotal text-right">-->
+                                <!--                                        <td name="td_section_subtotal" colspan="99">-->
+                                <!--                                            <strong class="mr16">Subtotal</strong>-->
+                                <!--                                            <span t-esc="current_subtotal"-->
+                                <!--                                                  t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.pricelist_id.currency_id}"/>-->
+                                <!--                                        </td>-->
+                                <!--                                    </tr>-->
+                                <!--                                </t>-->
+                            </t>
+                        </tbody>
+                    </table>
+<!--                    <div class="clearfix" name="so_total_summary" style="color:red;">-->
+<!--                        <div id="total" class="row" name="total">-->
+<!--                            <div t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ml-auto">-->
+<!--                                <table class="table table-sm">-->
+<!--                                    <t t-set="tax_totals" t-value="json.loads(docs.tax_totals_json)"/>-->
+<!--                                    <t t-call="account.document_tax_totals"/>-->
+<!--                                </table>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
+
+        <!--<?xml version="1.0" encoding="utf-8"?>-->
+        <!--<odoo>-->
+        <!--    <template id="sale_report_inherit">-->
+        <!--        <t t-call="web.html_container">-->
+        <!--            <t t-call="web.external_layout">-->
+        <!--                <div class="page">-->
+        <!--                    <div class="oe_structure"/>-->
+        <!--                    <h3 style="text-align:center;color:Red;font-family:lucida console;">Sale Order Details</h3>-->
+        <!--                    <br/>-->
+        <!--                    <t t-foreach="docs" t-as="object">-->
+        <!--                        <table class="table table-bordered" border="4"-->
+        <!--                               style="background-color:aliceblue;font-family:lucida console;border:2pt solid black">-->
+        <!--                            <th colspan="2" style="color:blue;font-size:13pt">-->
+        <!--                                <center>Customer Name:->-->
+        <!--                                    <u>-->
+        <!--                                        <t t-esc="docs.partner_id"/>-->
+        <!--                                    </u>-->
+        <!--                                </center>-->
+        <!--                            </th>-->
+        <!--                            <tr>-->
+        <!--                                <th>Date From:</th>-->
+        <!--                                <th>Date to:</th>-->
+        <!--                            </tr>-->
+        <!--                            <tr>-->
+        <!--                                <td>-->
+        <!--                                    &lt;!&ndash;                                <t t-esc="datas['date_from']"/>&ndash;&gt;-->
+        <!--                                </td>-->
+        <!--                                <td align="text-right">-->
+        <!--                                    &lt;!&ndash;                                <t t-esc="datas['date_to']"/>&ndash;&gt;-->
+        <!--                                </td>-->
+        <!--                            </tr>-->
+        <!--                        </table>-->
+        <!--                    </t>-->
+        <!--                    <br/>-->
+        <!--                    <t t-set="total" t-value="0"/>-->
+        <!--                    <table class="table table-bordered" border="2"-->
+        <!--                           style="border:2pt solid black;font-family:lucida console">-->
+        <!--                        <th>Sale Order Reference</th>-->
+        <!--                        <th>Product Name</th>-->
+        <!--                        <th>Order Total</th>-->
+        <!--                        <t t-foreach="docs.order_line" t-as="doc">-->
+        <!--                            <tbody>-->
+        <!--                                <tr>-->
+        <!--                                    <td>-->
+        <!--                                        <strong t-esc="doc.order_id.name"/>-->
+        <!--                                    </td>-->
+        <!--                                    <td>-->
+        <!--                                        <span t-esc="doc.name"/>-->
+        <!--                                    </td>-->
+        <!--                                    <td>-->
+        <!--                                        <span t-esc="doc.order_id.amount_total" style="font-size:12pt;"/>-->
+        <!--                                        <t t-set="total" t-value="total + doc.order_id.amount_total"/>-->
+        <!--                                    </td>-->
+        <!--                                </tr>-->
+        <!--                            </tbody>-->
+        <!--                        </t>-->
+        <!--                        <tr>-->
+        <!--                            <td colspan="2">-->
+        <!--                                <h3>Amount Total</h3>-->
+        <!--                            </td>-->
+        <!--                            <td style="color:red;font-family:lucida console">-->
+        <!--                                <b>-->
+        <!--                                    <t t-esc="total"/>-->
+        <!--                                </b>-->
+        <!--                            </td>-->
+        <!--                        </tr>-->
+        <!--                    </table>-->
+        <!--                </div>-->
+        <!--            </t>-->
+        <!--        </t>-->
+        <!--    </template>-->
+        <!--</odoo>-->
+
+
