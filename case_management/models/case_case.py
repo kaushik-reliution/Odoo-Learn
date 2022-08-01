@@ -33,4 +33,22 @@ class CaseCase(models.Model):
             rec.case_achieved_amount = remain_amount
             rec.case_remain_amount = rec.case_estimated_amount - rec.case_achieved_amount
 
+    # def get_receipt_data(self):
+    #     # active_id = self.env.context.get('active_ids')
+    #     active_ids = self.ids
+    #     case_ids = self.env['case.case'].browse(active_ids)
+    #     print(case_ids)
+    #     if case_ids:
+    #         case_items = []
+    #         for record in case_ids:
+    #             contributors_data = {
+    #                 'contribution_amount': record.contributor_ids.contribution_amount,
+    #                 'contribution_by': record.contributor_ids.contribution_by,
+    #                 'contribution_ref': record.contributor_ids.contribution_ref,
+    #                 'phone': record.contributor_id.phone,
+    #                 'address': record.contributor_id.
+    #
+    #             }
+    #             case_items.append(contributors_data)
+    #         return case_items
 

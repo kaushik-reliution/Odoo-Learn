@@ -87,28 +87,28 @@
         <!--                    <h3 style="text-align:center;color:Red;font-family:lucida console;">Sale Order Details</h3>-->
         <!--                    <br/>-->
         <!--                    <t t-foreach="docs" t-as="object">-->
-        <!--                        <table class="table table-bordered" border="4"-->
-        <!--                               style="background-color:aliceblue;font-family:lucida console;border:2pt solid black">-->
-        <!--                            <th colspan="2" style="color:blue;font-size:13pt">-->
-        <!--                                <center>Customer Name:->-->
-        <!--                                    <u>-->
-        <!--                                        <t t-esc="docs.partner_id"/>-->
-        <!--                                    </u>-->
-        <!--                                </center>-->
-        <!--                            </th>-->
-        <!--                            <tr>-->
-        <!--                                <th>Date From:</th>-->
-        <!--                                <th>Date to:</th>-->
-        <!--                            </tr>-->
-        <!--                            <tr>-->
-        <!--                                <td>-->
-        <!--                                    &lt;!&ndash;                                <t t-esc="datas['date_from']"/>&ndash;&gt;-->
-        <!--                                </td>-->
-        <!--                                <td align="text-right">-->
-        <!--                                    &lt;!&ndash;                                <t t-esc="datas['date_to']"/>&ndash;&gt;-->
-        <!--                                </td>-->
-        <!--                            </tr>-->
-        <!--                        </table>-->
+<!--                                <table class="table table-bordered" border="4"-->
+<!--                                       style="background-color:aliceblue;font-family:lucida console;border:2pt solid black">-->
+<!--                                    <th colspan="2" style="color:blue;font-size:13pt">-->
+<!--                                        <center>Customer Name:->-->
+<!--                                            <u>-->
+<!--                                                <t t-esc="docs.partner_id"/>-->
+<!--                                            </u>-->
+<!--                                        </center>-->
+<!--                                    </th>-->
+<!--                                    <tr>-->
+<!--                                        <th>Date From:</th>-->
+<!--                                        <th>Date to:</th>-->
+<!--                                    </tr>-->
+<!--                                    <tr>-->
+<!--                                        <td>-->
+<!--                                            &lt;!&ndash;                                <t t-esc="datas['date_from']"/>&ndash;&gt;-->
+<!--                                        </td>-->
+<!--                                        <td align="text-right">-->
+<!--                                            &lt;!&ndash;                                <t t-esc="datas['date_to']"/>&ndash;&gt;-->
+<!--                                        </td>-->
+<!--                                    </tr>-->
+<!--                                </table>-->
         <!--                    </t>-->
         <!--                    <br/>-->
         <!--                    <t t-set="total" t-value="0"/>-->

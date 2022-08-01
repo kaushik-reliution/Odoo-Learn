@@ -3,6 +3,8 @@ from odoo import api, fields, models, _
 
 class EntryForm(models.Model):
     _name = 'entry.form'
+    _rec_name = "entry_no"
+
     entry_id = fields.Many2one('case.case')
     entry_no = fields.Char(string="Entry No")
     entry_date = fields.Date(string="Entry Date")

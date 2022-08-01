@@ -1,5 +1,5 @@
-<!--<?xml version="1.0" encoding="utf-8"?>-->
-<!--<odoo>-->
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
 <!--    <data>-->
 <!--        <record id="sale_order_view_inherit" model="ir.ui.view">-->
 <!--            <field name="name">sale.order.view</field>-->
@@ -8,9 +8,10 @@
 <!--            <field name="arch" type="xml">-->
 <!--                <field name="payment_term_id" position="after">-->
 <!--                    <field name="temp_credit" invisible="1"/>-->
-<!--                    <field name="override_credit_limit" groups="crm_sales_quotation.override_credit_limit"/>-->
+<!--                    <field name="override_credit_limit" groups="Credit_Limit_Management.override_credit_limit"/>-->
 <!--                </field>-->
 <!--            </field>-->
 <!--        </record>-->
 <!--    </data>-->
-<!--</odoo>-->
+</odoo>
+

@@ -6,10 +6,17 @@
         <field name="arch" type="xml">
             <form string="Customer Credit Info">
                 <group class="oe_title">
-                    <field name="partner_id"/>
-                    <field name="credit_limit" readonly="1" force="save"/>
-                    <field name="unpaid_amt" readonly="1" force_save="1."/>
-                    <field name="order_amt" readonly="1" force="save"/>
+                    <group>
+                        <field name="partner_id" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="credit_limit"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="available_amount_due" readonly="1"/>
+                    <field name="current_sale_order_amount" readonly="1"/>
+                    <field name="total_used_amount" readonly="1"/>
                 </group>
                 <group>
                     <field name="pending_invoices_line_ids" widget="many2many" readonly="1">
@@ -17,21 +24,18 @@
                             <field name="company_id"/>
                             <field name="name"/>
                             <field name="amount_residual" readonly="1" force="save"/>
-                            <field name="amount_total" readonly="1" force="save"/>
+                            <field name="amount_total" readonly="1" force="save" sum="amount_total"/>
                         </tree>
                     </field>
                 </group>
                 <group>
-                    <field name="sale_order_ids" widget="many2many" readonly="1"/>
+                    <field name="credit_notes" widget="many2many" readonly="1" sum=""/>
                 </group>
                 <group>
-                    <field name="credit_notes" widget="many2many" readonly="1"/>
-                </group>
-                <group>
-                    <field name="exceed_amt" readonly="1" force="save"/>
                     <field name="email_to" invisible="1"/>
                     <field name="team_id" invisible="1"/>
                     <field name="user_id" invisible="1"/>
+                    <field name="email_from" invisible="1"/>
                 </group>
                 <footer>
                     <button name="action_send_mail" type="object" string="Notify Manager" class="oe_highlight"/>

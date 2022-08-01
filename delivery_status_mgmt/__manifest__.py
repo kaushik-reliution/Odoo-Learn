@@ -14,6 +14,7 @@
         'report/s_order_report.xml',
         'wizard/sorder_report_wizard.xml',
         'views/sale_view.xml',
+        'views/xls_report_views.xml',
         'report/report.xml',
 
     ],

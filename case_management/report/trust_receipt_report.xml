@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <div class="row" style="padding-right:13.99px;padding-left:17px;padding-bottom:4px">
+            <div class="col-10" style="border:2px solid black">
+                <div class="row">
+                    <div class="col-12" style="border:0px solid black;border-right:0;padding-top:2px;text-align:center">
+                        <strong style="font-size:17px;;">HELPING HANDS FOUNDATION-RAJKOT</strong>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12" style="border-top:1px solid black;border-right:0;padding-top:2px">
+                        <p style="font-size:12px;text-indent: -6px;margin-top: 0px;margin-bottom: 0.5rem;">TRUST REG. NO. E/11577/RAJKOT DT. 31 DEC.2021 PAN:
+                            AACTH5713R
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12" style="border-top:1px solid black;border-right:0;padding-top:2px">
+                        <p style="font-size:12px;text-indent: -6px;">SECTION 80G URN : AACTH5713RF2022101 DATE: 24 MAY
+                            2022
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12" style="border-top:1px solid black;border-right:0;padding-top:2px;">
+                        <p style="font-size:12px;text-indent:-6px;">ADDRESS : C/O 75, A.G.SOCIETY, KALAWAD ROAD, RAJKOT 360005 PH.9429979522
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2" style="border:2px solid black;border-left:1px;border-top:2px solid black;padding-top:0px">
+                <div>
+                    <h1>
+                        <img src="/case_management/static/description/logo.jpg" style="height:60pt;width:70pt;text-align:center;padding-right:25px;padding-left:0px;padding-top:1px"/>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </template>
+    <template id="trust_receipt_report_pdf">
+        <t t-call="web.html_container">
+            <t t-call="web.basic_layout">
+                <style>
+                    td {
+                    border:1px solid black;
+                    }
+                    th {
+                    border:1px solid black;
+                    }
+                    table{
+                    border-collapse:collapse;
+                    border:2px solid black;
+                    font-family:Arial,Helvetica,sans-serif;
+                    font-size:14px;
+                    align:center;
+                    }
+                </style>
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="case_management.contributor_receipt_header"/>
+                    <div class="page" style="font:Calibri;padding-right:0px;padding-left:2.5px">
+                        <t t-foreach="doc" t-as="doc_ids">
+                            <tbody>
+                                <table class="o_main_table" height="160" cellpadding="0" cellspacing="0" style="width:100%;padding-top:0px;padding-left:0px">
+                                    <th style="padding-left:1px;padding-top:1px">
+                                        Receipt No:-
+                                    </th>
+                                    <td style="padding-left:1px">
+                                        <span t-esc="doc_ids.receipt_no"/>
+                                    </td>
+                                    <th style="padding-left:1px">Date</th>
+                                    <td style="padding-left:1px">
+                                        <span t-esc="doc_ids.date_now"/>
+                                    </td>
+                                    <th colspan="2"/>
+                                    <tr>
+                                        <td colspan="4" style="padding-left:1px">
+                                        </td>
+                                        <td style="padding-left:1px">Payment</td>
+                                        <td style="padding-left:1px">Chq.No/Trans.Id</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="padding-left:1px">
+                                            <strong>Received Donation</strong>
+                                        </td>
+                                        <td style="padding-left:1px">
+                                            <span style="font-weight:normal;" t-esc="doc_ids.contribution_amount"/>
+                                        </td>
+                                        <td style="padding-left:1px">
+                                            <strong>BY</strong>
+                                        </td>
+                                        <td style="padding-left:1.5px">
+                                            <span t-esc="doc_ids.contribution_by"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="doc_ids.contribution_ref"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left:1px">
+                                            <strong>In Word</strong>
+                                        </td>
+                                        <td colspan="5">
+                                            <span t-esc="res_company.currency_id.amount_to_text(doc_ids.contribution_amount)"/>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td colspan="6" style="padding-left:1px">
+                                            <strong>Remark:</strong>
+                                            <span style="padding-left:1px" t-esc="doc_ids.remark"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left:1px">
+                                            <strong>From</strong>
+                                        </td>
+                                        <td colspan="5" style="padding-left:1.5px">
+                                            <span t-esc="doc_ids.contributor_id.name"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left:1px">
+                                            <strong>Address</strong>
+                                        </td>
+                                        <td colspan="5" style="padding-left:1.5px">
+                                            <span t-esc="doc_ids.contributor_id.street"/>
+                                            <span t-esc="doc_ids.contributor_id.street2"/>
+                                            <span t-esc="doc_ids.contributor_id.city"/>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="6" style="padding-left:118px;">
+                                            <span t-esc="doc_ids.contributor_id.state_id.name"/>
+                                            <span t-esc="doc_ids.contributor_id.country_id.name"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left:1px">
+                                            <strong>Phone no</strong>
+                                        </td>
+                                        <td colspan="5" style="padding-left:1.5px">
+                                            <span t-esc="doc_ids.contributor_id.phone"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div>
+                                    <div>
+                                        <div style="font-size:14px;text-align:right">
+                                            <p style="text-align:right;">This is a computer generated document, does not
+                                                require signature therefore.
+                                            </p>
+                                        </div>
+                                        <div style="text-align:right;font-size:14px">
+                                            For, Helping Hands Foundation, Rajkot
+                                        </div>
+                                    </div>
+                                </div>
+                            </tbody>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+    <record id="paperformat_contributor_receipt" model="report.paperformat">
+        <field name="name">custom</field>
+        <field name="default" eval="True"/>
+        <field name="format">custom</field>
+        <field name="page_height">105</field>
+        <field name="page_width">150</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">3</field>
+        <field name="margin_bottom">1</field>
+        <field name="margin_left">1</field>
+        <field name="margin_right">1</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="disable_shrinking" eval="True"/>
+        <field name="dpi">96</field>
+    </record>
+    <record id="case_receipt_report" model="ir.actions.report">
+        <field name="name">Contributor Receipt</field>
+        <field name="model">case.contributor</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">case_management.trust_receipt_report_pdf</field>
+        <field name="report_file">case_management.trust_receipt_report_pdf</field>
+        <field name="print_report_name">'Case Receipt'</field>
+        <field name="binding_model_id" ref="case_management.model_case_contributor"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="case_management.paperformat_contributor_receipt"/>
+    </record>
+
+</odoo>
+
+
+

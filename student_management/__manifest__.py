@@ -16,5 +16,5 @@
              'views/fees_view.xml',
              ],
     'application': True,
-    'auto_install': True
+    'auto_install': False
 }

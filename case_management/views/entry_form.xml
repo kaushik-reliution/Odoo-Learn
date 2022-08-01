@@ -59,6 +59,7 @@
                 <sheet>
                     <group>
                         <group>
+                            <field name="entry_id"/>
                             <field name="entry_no"/>
                             <field name="entry_date"/>
                         </group>
@@ -87,7 +88,7 @@
     </record>
 
     <menuitem id="menu_entry_root"
-              name="Entry Form"
+              name="Entries"
               parent="menu_case_root"
               action="entry_action"
               sequence="20"/>

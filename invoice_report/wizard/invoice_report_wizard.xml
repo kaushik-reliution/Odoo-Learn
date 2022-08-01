@@ -5,18 +5,11 @@
         <field name="model">invoice.report.wizard</field>
         <field name="arch" type="xml">
             <form string="Print report Details">
-<!--                <group>-->
-<!--                    <field name="invoice_line_ids" widget="many2many">-->
-<!--                        <tree>-->
-<!--                            <field name="payment_reference"/>-->
-<!--                            <field name="invoice_date"/>-->
-<!--                            <field name="amount_total"/>-->
-<!--                        </tree>-->
-<!--                    </field>-->
-<!--                </group>-->
                 <group>
-                    <field name="date_from"/>
-                    <field name="date_to"/>
+                    <field name="date_from" required="1"/>
+                    <field name="date_to" required="1"/>
+                    <field name="email_from" invisible="1"/>
+                    <field name="email_to" invisible="1"/>
                 </group>
                 <footer>
                     <button name="send_invoice_report" string="Send Invoice Summary" type="object" class="btn-primary"/>

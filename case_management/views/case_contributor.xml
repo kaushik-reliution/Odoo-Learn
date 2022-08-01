@@ -20,6 +20,7 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="contributor_id"/>
+                <field name="receipt_no"/>
                 <field name="case_id"/>
                 <field name="contribution_amount"/>
                 <field name="contribution_by"/>
@@ -35,6 +36,11 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
+                     <div class="oe_title">
+                        <h1>
+                            <field name="receipt_no" readonly="1"/>
+                        </h1>
+                    </div>
                     <group>
                         <group>
                             <field name="contributor_id"/>
@@ -45,6 +51,7 @@
                             <field name="contribution_by"/>
                             <field name="contribution_ref"/>
                             <field name="contribution_amount"/>
+                            <field name="remark"/>
                         </group>
                     </group>
                 </sheet>
@@ -65,7 +72,7 @@
     </record>
 
     <menuitem id="menu_contributors_root"
-              name="Contributor Form"
+              name="Contribution"
               parent="menu_case_root"
               action="contribution_action"
               sequence="15"/>
